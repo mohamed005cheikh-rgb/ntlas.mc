@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ntlas | تجربة رقمية فريدة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <header class="hero-section">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="promo.mp4" type="video/mp4">
+        </video>
+        
+        <nav class="navbar">
+            <div class="logo-wrapper">
+                <img src="logo.png.jpg" alt="Ntlas Logo" class="brand-logo">
+            </div>
+            <a href="https://wa.me/22230726475" class="whatsapp-btn">
+                <span>تواصل معنا: +22230726475</span>
+            </a>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="fade-in">عالم Ntlas الرقمي</h1>
+            <p>انطلس على همك</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="glass-container">
+            <h2>مولد الرموز التفاعلية</h2>
+            <div class="input-box">
+                <input type="text" id="qr-input" placeholder="أدخل الرابط هنا...">
+                <button onclick="generateQR()">توليد QR</button>
+            </div>
+            <div id="qrcode"></div>
+            <button id="download-btn" style="display:none;" onclick="downloadQR()">حفظ الرمز</button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>جميع الحقوق محفوظة : MC | المطور: <a href="mailto:yourname@gmail.com" style="color: #00f2ff; text-decoration: none;">ntlas.mc@gmail.com</a></p>
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,80 @@
+:root {
+    --cyan: #00f2ff;
+    --dark: #050a10;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    margin: 0; padding: 0; font-family: 'Cairo', sans-serif;
+    background-color: var(--dark); color: white;
+}
+
+/* خلفية الفيديو الإعلانية */
+.hero-section {
+    position: relative; height: 70vh; width: 100%; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.bg-video {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: -1; filter: brightness(0.4);
+}
+
+/* الشعار والرابط */
+.brand-logo { 
+    height: 80px; filter: drop-shadow(0 0 15px var(--cyan)); 
+}
+
+.whatsapp-btn {
+    background: rgba(37, 211, 102, 0.15); border: 1px solid #25D366;
+    padding: 8px 20px; border-radius: 50px; color: white; text-decoration: none;
+    transition: 0.3s;
+}
+
+.whatsapp-btn:hover { background: #25D366; color: black; box-shadow: 0 0 20px #25D366; }
+
+/* تصميم الكرت الزجاجي */
+.glass-container {
+    background: var(--glass); backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px;
+    padding: 50px; max-width: 600px; margin: -100px auto 50px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5); text-align: center;
+}
+
+input {
+    width: 70%; padding: 15px; border-radius: 10px; border: none;
+    background: rgba(0,0,0,0.3); color: white; outline: none;
+}
+
+button {
+    background: linear-gradient(45deg, var(--cyan), #008cff);
+    border: none; padding: 15px 30px; border-radius: 10px;
+    font-weight: bold; cursor: pointer; transition: 0.4s;
+}
+
+button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 242, 255, 0.4); }
+
+/* تنسيق الشعار بلمسة فنية احترافية */
+.brand-logo {
+    height: 90px; /* حجم معتدل وواضح */
+    width: auto;
+    position: absolute; /* هذا السر لجعله غير محشور */
+    top: 20px; /* مسافة من الأعلى */
+    left: 40px; /* يضعه على الجانب الأيسر بعيداً عن الأزرار */
+    filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.8)); /* توهج قوي وجميل */
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.1) rotate(-2deg); /* حركة تفاعلية عند تمرير الفأرة */
+}
+
+.main-footer {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.3); /* خلفية داكنة خفيفة */
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
