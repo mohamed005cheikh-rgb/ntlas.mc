@@ -1,38 +1,44 @@
-let qrcode;
-
 function generateQR() {
     const input = document.getElementById("qr-input").value;
-    const container = document.getElementById("qrcode");
-    const downloadBtn = document.getElementById("download-btn");
+    const qrDiv = document.getElementById("qrcode");
+    const panel = document.getElementById("result-panel");
 
-    if (!input) {
-        alert("يرجى إدخال رابط أولاً!");
-        return;
-    }
+    if (!input) { alert("من فضلك ضع رابطاً"); return; }
 
-    // تنظيف الحاوية قبل التوليد الجديد
-    container.innerHTML = "";
-    
-    qrcode = new QRCode(container, {
+    qrDiv.innerHTML = ""; // مسح القديم
+    new QRCode(qrDiv, {
         text: input,
-        width: 256,
-        height: 256,
-        colorDark: "#050a10",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+        width: 250,
+        height: 250,
+        correctLevel: QRCode.CorrectLevel.H // لضمان عمل اللوغو
     });
 
-    // إظهار زر التحميل
-    downloadBtn.style.display = "inline-block";
+    panel.style.display = "block";
+}
+
+function applyStyle() {
+    const frame = document.getElementById("frame-type").value;
+    const color = document.getElementById("frame-color").value;
+    const wrapper = document.getElementById("qr-wrapper");
+
+    wrapper.className = ""; 
+    wrapper.style.borderColor = "transparent";
+    document.documentElement.style.setProperty('--main', color);
+
+    if (frame !== "none") {
+        wrapper.classList.add(frame);
+        wrapper.style.borderColor = color;
+    }
 }
 
 function downloadQR() {
-    const img = document.querySelector("#qrcode img");
-    if (img) {
-        const link = document.createElement("a");
-        link.href = img.src;
-        link.download = "Ntlas-QR.png";
-        link.click();
-    }
+    const canvas = document.querySelector("#qrcode canvas");
+    const logo = document.getElementById("qr-center-logo"); // سأستخدم صورة اللوغو الظاهرة
+    
+    // إنشاء صورة مدمجة للتحميل
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "Ntlas-QR.png";
+    link.click();
 }
 
