@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <meta name="theme-color" content="#00d2ff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Ntlas - Pro QR Generator</title>
@@ -14,7 +14,7 @@
             --main: #00d2ff; 
             --glass: rgba(255, 255, 255, 0.08); 
             --glass-border: rgba(255, 255, 255, 0.18);
-            --bg-dark: rgba(0, 0, 0, 0.55);
+            --bg-dark: rgba(0, 0, 0, 0.65);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
@@ -26,7 +26,7 @@
 
         /* شريط الملاحة */
         .navbar { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 10px; }
-        .contact-links { display: flex; align-items: center; gap: 10px; }
+        .contact-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .glow { color: var(--main); text-decoration: none; font-weight: 600; text-shadow: 0 0 8px var(--main); font-size: 0.85rem; transition: 0.3s; }
         .glow:hover { opacity: 0.8; }
         .sep { opacity: 0.4; }
@@ -38,12 +38,12 @@
 
         /* الحاوية الرئيسية */
         .wrapper { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px 15px; }
-        .glass-card { background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 25px; border-radius: 28px; border: 1px solid var(--glass-border); text-align: center; width: 100%; max-width: 480px; box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+        .glass-card { background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 25px; border-radius: 28px; border: 1px solid var(--glass-border); text-align: center; width: 100%; max-width: 500px; box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         .title { font-size: 2.2rem; margin-bottom: 2px; color: #fff; text-shadow: 0 0 12px rgba(255,255,255,0.3); }
         .tagline { font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px; letter-spacing: 1px; }
 
-        /* التبويبات الذكية (القوالب) */
-        .tabs { display: flex; background: var(--bg-dark); border-radius: 14px; padding: 4px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        /* التبويبات الذكية */
+        .tabs { display: flex; background: var(--bg-dark); border-radius: 14px; padding: 4px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); gap: 4px; }
         .tab { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; background: transparent; border: none; color: #aaa; border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
         .tab.active { background: rgba(255,255,255,0.15); color: var(--main); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .tab svg { width: 16px; height: 16px; stroke: currentColor; }
@@ -65,9 +65,9 @@
         .upload-btn:hover { background: rgba(255,255,255,0.1); border-color: var(--main); }
 
         /* منطقة الـ QR */
-        #qr-export-zone { display: flex; justify-content: center; align-items: center; margin: 15px 0; min-height: 240px; }
-        #qr-wrapper { position: relative; display: inline-block; padding: 20px; background: #ffffff; border-radius: 18px; transition: all 0.3s ease; border: 4px solid transparent; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        #qrcode { display: none; } /* مخفي حتى يتولد كود */
+        #qr-export-zone { display: flex; justify-content: center; align-items: center; margin: 15px 0; min-height: 200px; }
+        #qr-wrapper { position: relative; display: inline-block; padding: 20px; background: #ffffff; border-radius: 18px; transition: all 0.3s ease; border: 4px solid transparent; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 100%; }
+        #qrcode { display: none; }
         #qrcode canvas, #qrcode img { display: block; margin: 0 auto; max-width: 100% !important; height: auto !important; }
         #qr-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; background: #ffffff; border-radius: 8px; padding: 3px; box-shadow: 0 2px 10px rgba(0,0,0,0.25); pointer-events: none; display: none; }
         .placeholder-text { color: rgba(0,0,0,0.3); font-size: 0.9rem; font-weight: bold; margin-top: 80px; }
@@ -77,8 +77,8 @@
         .round { border-radius: 50% !important; box-shadow: 0 0 28px var(--main); padding: 32px !important; }
 
         /* أزرار الإجراءات */
-        .action-buttons { display: flex; gap: 8px; flex-wrap: wrap; display: none; /* مخفية حتى يتولد كود */ }
-        .btn-action { flex: 1; min-width: 100px; display: flex; align-items: center; justify-content: center; gap: 6px; border: none; padding: 12px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
+        .action-buttons { display: flex; gap: 10px; flex-wrap: wrap; display: none; }
+        .btn-action { flex: 1; min-width: 100px; display: flex; align-items: center; justify-content: center; gap: 6px; border: none; padding: 12px 15px; border-radius: 12px; font-size: 0.9rem; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
         .btn-download { background: linear-gradient(45deg, var(--main), #0077ff); color: #000; }
         .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
         .btn-action:hover { transform: translateY(-2px); opacity: 0.9; }
@@ -89,11 +89,40 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         
-        @media (max-width: 480px) {
+        /* ===========================================
+           تحسينات الهاتف المحمول (الأهم في هذا الإصدار)
+           =========================================== */
+        @media (max-width: 600px) {
+            .glass-card { padding: 18px 12px; border-radius: 20px; }
+            .title { font-size: 1.8rem; }
+            .tagline { font-size: 0.75rem; margin-bottom: 15px; }
+            
+            /* التبويبات تصبح أعمدة في الهاتف لتكون أسهل للضغط */
+            .tabs { flex-wrap: wrap; gap: 4px; }
+            .tab { flex: 1 0 100%; font-size: 0.8rem; padding: 8px; }
+            
+            /* حقول الإدخال تصبح أوسع وأكثر راحة */
+            input[type="text"], input[type="password"], select { padding: 12px 14px; font-size: 16px; } /* منع الزووم في iOS */
+            
+            /* خيارات التخصيص تصبح عموداً واحدا لتجنب الضيق */
+            .options-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .opt-group label { font-size: 0.7rem; }
+
+            /* أزرار الإجراءات أصبحت كبيرة ومريحة للإبهام */
+            .action-buttons { flex-direction: column; gap: 8px; }
+            .btn-action { padding: 14px; font-size: 1rem; width: 100%; }
+            
+            /* شعار وسط الـ QR يتناسب مع الشاشة */
+            #qr-wrapper { padding: 12px; }
+            #qr-logo { width: 35px; height: 35px; }
+        }
+
+        /* تحسين صغير لشاشات صغيرة جداً (أقل من 400px) */
+        @media (max-width: 400px) {
             .navbar { justify-content: center; }
-            .tabs { flex-wrap: wrap; }
-            .action-buttons { flex-direction: column; }
-            .btn-action { width: 100%; }
+            .contact-links { gap: 5px; }
+            .glow { font-size: 0.7rem; }
+            .options-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -224,10 +253,9 @@
         let currentLang = 'ar';
         let currentTab = 'text';
         let qrInstance = null;
-        let debounceTimer; // لضمان عدم تشنج الهاتف
-        let customLogoUrl = 'logo.png'; // المسار الافتراضي
+        let debounceTimer;
+        let customLogoUrl = 'logo.png';
 
-        // قاموس الترجمة الكامل
         const translations = {
             ar: {
                 tabText: "رابط/نص", tabWifi: "شبكة Wi-Fi", tabVcard: "جهة اتصال",
@@ -254,20 +282,6 @@
                 msgEmpty: "Données incomplètes", msgCopied: "Copié avec succès!", msgFail: "Non supporté par votre navigateur"
             }
         };
-
-        // الاهتزاز (Haptic Feedback)
-        function vibrate() {
-            if (navigator.vibrate) navigator.vibrate(50);
-        }
-
-        // التنبيهات الناعمة (Toast)
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
-        }
 
         // تغيير اللغة
         function setLanguage(lang) {
@@ -320,7 +334,7 @@
             document.querySelectorAll('.form-group').forEach(form => form.classList.remove('active'));
             document.getElementById('form-' + tabId).classList.add('active');
             
-            handleInput(); // إعادة بناء الـ QR بناءً على القالب الجديد
+            handleInput();
         }
 
         // رفع شعار مخصص
@@ -331,13 +345,13 @@
                 reader.onload = function(e) {
                     customLogoUrl = e.target.result;
                     document.getElementById('qr-logo').src = customLogoUrl;
-                    handleInput(); // تحديث فوري
+                    handleInput();
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        // استخراج البيانات وتنسيقها حسب القالب (السر التقني للـ Smart Templates)
+        // استخراج البيانات وتنسيقها
         function getQRData() {
             if (currentTab === 'text') {
                 return document.getElementById("inp-text").value.trim();
@@ -357,15 +371,15 @@
             return "";
         }
 
-        // مراقب الإدخال مع تأخير ذكي (Debounce) لمنع الـ Lag
+        // مراقب الإدخال مع تأخير ذكي
         function handleInput() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
                 generateQR();
-            }, 400); // ينتظر 400ms بعد آخر ضغطة زر
+            }, 400);
         }
 
-        // التوليد الفعلي
+        // التوليد الفعلي (مع حل مشكلة العربية للـ Wi-Fi والـ Contact)
         function generateQR() {
             const data = getQRData();
             const qrDiv = document.getElementById("qrcode");
@@ -384,7 +398,7 @@
 
             qrDiv.innerHTML = "";
             
-            // التشفير الذكي لدعم اللغة العربية في الـ QR بشكل مثالي
+            // حل مشكلة العربية: تشفير البيانات ثم فكها لتعمل داخل المكتبة القديمة
             const utf8Data = unescape(encodeURIComponent(data));
 
             qrInstance = new QRCode(qrDiv, {
@@ -437,7 +451,6 @@
             const x = (exportCanvas.width - logoSize) / 2;
             const y = (exportCanvas.height - logoSize) / 2;
 
-            // عزل الشعار بخلفية بيضاء
             ctx.fillStyle = "#ffffff";
             ctx.beginPath();
             if(ctx.roundRect) {
@@ -447,14 +460,12 @@
             }
             ctx.fill();
 
-            // رسم الشعار
             ctx.drawImage(logoImg, x, y, logoSize, logoSize);
             callback(exportCanvas);
         }
 
         // حفظ الصورة
         function downloadQR() {
-            vibrate();
             createExportCanvas((canvas) => {
                 const link = document.createElement("a");
                 link.href = canvas.toDataURL("image/png");
@@ -465,24 +476,35 @@
 
         // نسخ الصورة
         function copyQRImage() {
-            vibrate();
             createExportCanvas((canvas) => {
                 canvas.toBlob((blob) => {
                     if (navigator.clipboard && window.ClipboardItem) {
                         const item = new ClipboardItem({ "image/png": blob });
                         navigator.clipboard.write([item])
-                            .then(() => showToast(translations[currentLang].msgCopied))
-                            .catch(() => showToast(translations[currentLang].msgFail));
+                            .then(() => {
+                                const toast = document.getElementById('toast');
+                                toast.textContent = translations[currentLang].msgCopied;
+                                toast.classList.add('show');
+                                setTimeout(() => toast.classList.remove('show'), 3000);
+                            })
+                            .catch(() => {
+                                const toast = document.getElementById('toast');
+                                toast.textContent = translations[currentLang].msgFail;
+                                toast.classList.add('show');
+                                setTimeout(() => toast.classList.remove('show'), 3000);
+                            });
                     } else {
-                        showToast(translations[currentLang].msgFail);
+                        const toast = document.getElementById('toast');
+                        toast.textContent = translations[currentLang].msgFail;
+                        toast.classList.add('show');
+                        setTimeout(() => toast.classList.remove('show'), 3000);
                     }
                 });
             });
         }
 
-        // ميزة المشاركة الأصلية (Native Share) للهواتف
+        // ميزة المشاركة الأصلية للهواتف
         function shareQR() {
-            vibrate();
             createExportCanvas((canvas) => {
                 canvas.toBlob(async (blob) => {
                     const file = new File([blob], 'Ntlas-QR.png', { type: 'image/png' });
@@ -497,7 +519,10 @@
                             console.log('Share canceled');
                         }
                     } else {
-                        showToast(translations[currentLang].msgFail);
+                        const toast = document.getElementById('toast');
+                        toast.textContent = translations[currentLang].msgFail;
+                        toast.classList.add('show');
+                        setTimeout(() => toast.classList.remove('show'), 3000);
                     }
                 });
             });
